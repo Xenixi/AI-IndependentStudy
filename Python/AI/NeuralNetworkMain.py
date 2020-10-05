@@ -23,10 +23,18 @@ class neuralNetworkMain:
         #self.who = (numpy.random.rand(self.onodes, self.hnodes) - 0.5)
         #1##1###1##
         # CHECK THIS IN THE BOOK!!!
-        self.wih = numpy.random.normal(
-            0.0, pow(self.inodes, -0.5), (self.hnodes, self.inodes))
-        self.who = numpy.random.normal(
-            0.0, pow(self.hnodes, -0.5), (self.onodes, self.hnodes))
+        
+        
+        ## WIH means weighted inputs hidden 
+        
+        self.wih = numpy.random.normal(0.0, pow(self.inodes, -0.5), (self.hnodes, self.inodes))
+        
+        
+        self.who = numpy.random.normal(0.0, pow(self.hnodes, -0.5), (self.onodes, self.hnodes))
+        
+        
+        
+        ##########################
         #########
         self.activation_function = lambda x: scspecial.expit(x)
         pass
@@ -34,7 +42,7 @@ class neuralNetworkMain:
     def train(self, inputs_list, targets_list):
         inputs = numpy.array(inputs_list, ndmin=2).T
         targets = numpy.array(targets_list, ndmin=2).T
-        hidden_inputs = numpy.dot(self.wih, inputs)
+        hidden_inputs =  numpy.dot(self.wih, inputs)
         hidden_outputs = self.activation_function(hidden_inputs)
         # added 2
         final_inputs = numpy.dot(self.who, hidden_outputs)
